@@ -15,7 +15,6 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { ChatIcon } from "@chakra-ui/icons";
-import { ICommentPost } from "../type";
 
 interface IPostCardProps {
   post: any;
@@ -25,7 +24,7 @@ const PostCard = (props: IPostCardProps) => {
   const { post } = props || {};
   const [showComment, setShowComment] = useState<boolean>(false);
   const [comment, setComment] = useState<string>("");
-  const [commentedPost, setCommentedPost] = useState<ICommentPost>({
+  const [commentedPost, setCommentedPost] = useState<any>({
     image: post,
     text: [],
   });
@@ -36,7 +35,7 @@ const PostCard = (props: IPostCardProps) => {
 
   const handlePostComment = () => {
     if (comment !== "") {
-      setCommentedPost((prevCommentedPost) => ({
+      setCommentedPost((prevCommentedPost:any) => ({
         ...prevCommentedPost,
         text: [...prevCommentedPost.text, comment],
       }));
@@ -49,7 +48,7 @@ const PostCard = (props: IPostCardProps) => {
   };
 
   return (
-    <Box  rounded="md">
+    <Box rounded="md">
       <Card boxShadow="2xl" maxW="md" >
         <Image
           src={post ? URL.createObjectURL(post) : ""}
@@ -101,7 +100,7 @@ const PostCard = (props: IPostCardProps) => {
             fontFamily={"sans-serif"}
             paddingBottom="8px"
           >
-             Comments...  ({commentedPost?.text.length})
+            Comments...  ({commentedPost?.text.length})
           </Text>
         )}
 
